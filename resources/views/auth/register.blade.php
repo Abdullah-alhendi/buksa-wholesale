@@ -1,52 +1,43 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('content')
+<div class="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-center text-2xl font-bold text-emerald-700 mb-6">إنشاء حساب</h2>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700">الاسم:</label>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus class="w-full mt-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-emerald-300">
+            @error('name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700">البريد الإلكتروني:</label>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required class="w-full mt-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-emerald-300">
+            @error('email') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="mb-4">
+            <label for="password" class="block text-gray-700">كلمة المرور:</label>
+            <input id="password" type="password" name="password" required class="w-full mt-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-emerald-300">
+            @error('password') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="mb-4">
+            <label for="password_confirmation" class="block text-gray-700">تأكيد كلمة المرور:</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required class="w-full mt-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-emerald-300">
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <div class="flex justify-between items-center">
+            <a class="text-sm text-emerald-600 hover:underline" href="{{ route('login') }}">
+                لديك حساب بالفعل؟
             </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <button type="submit" class="bg-emerald-600 text-white px-4 py-2 rounded">
+                إنشاء حساب
+            </button>
         </div>
     </form>
-</x-guest-layout>
+</div>
+@endsection

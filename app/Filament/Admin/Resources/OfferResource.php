@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\DatePicker;
 
 class OfferResource extends Resource
 {
@@ -25,6 +26,13 @@ class OfferResource extends Resource
             ->schema([
                 Forms\Components\Textarea::make('message')->label('الرسالة')->required(),
                 Forms\Components\Toggle::make('is_active')->label('فعال'),
+            DatePicker::make('expires_at')->label('تاريخ الانتهاء')->required(),
+
+                  Forms\Components\FileUpload::make('image')
+                ->image()
+                ->directory('offers')
+                ->nullable()
+                ->label('صورة العرض'),
             ]);
     }
 
@@ -36,6 +44,8 @@ class OfferResource extends Resource
                 Tables\Columns\TextColumn::make('message')->label('الرسالة'),
                 Tables\Columns\IconColumn::make('is_active')->label('فعال')->boolean(),
                 Tables\Columns\TextColumn::make('created_at')->label('تاريخ الإنشاء')->dateTime(),
+                    Tables\Columns\ImageColumn::make('image')->label('صورة العرض'),
+
             ])
             ->filters([
                 //

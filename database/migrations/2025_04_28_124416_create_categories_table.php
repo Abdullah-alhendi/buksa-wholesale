@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type')->comment('food, plastic, frozen');
+            $table->string('type')->default('other')->comment('food, plastic, frozen'); // ✅ تعديل هنا
             $table->foreignId('parent_id')->nullable()->constrained('categories');
             $table->timestamps();
         });

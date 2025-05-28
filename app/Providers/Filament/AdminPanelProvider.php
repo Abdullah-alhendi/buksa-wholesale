@@ -23,17 +23,18 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->id('admin')
-            ->path('dashboard') // ✅ هنا حددنا الرابط /dashboard
+            ->path('filament.admin.pages.dashboard')
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->brandLogo(asset('images/Buksa4.png')) // ✅ أضف الشعار من مجلد public/images/logo.png
+            ->brandName('بكسة') // ✅ اسم التطبيق بجانب الشعار
             ->resources([
-                \App\Filament\Resources\CategoryResource::class,
-                \App\Filament\Resources\ProductResource::class,
-                \App\Filament\Resources\UserResource::class,
-                \App\Filament\Resources\OrderResource::class,
+                \App\Filament\Admin\Resources\CategoryResource::class,
+                \App\Filament\Admin\Resources\ProductResource::class,
+                \App\Filament\Admin\Resources\UserResource::class,
+                \App\Filament\Admin\Resources\OrderResource::class,
                 \App\Filament\Admin\Resources\OfferResource::class,
-                \App\Filament\Admin\Resources\PostResource::class,
                 \App\Filament\Admin\Resources\CartResource::class,
             ])
             ->pages([
@@ -41,7 +42,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
                 \App\Filament\Admin\Widgets\StatsOverview::class,
                 \App\Filament\Admin\Widgets\RecentOrders::class,
                 \App\Filament\Admin\Widgets\MonthlySalesChart::class,

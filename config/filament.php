@@ -97,5 +97,7 @@ return [
     */
 
     'system_route_prefix' => 'filament',
+        'brand' => '<img src="/images/logo.png" alt="Buksa" class="h-10">',
+
 
 ];

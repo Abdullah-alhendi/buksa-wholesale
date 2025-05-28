@@ -5,24 +5,26 @@
             <div class="text-center md:text-right">
                 <div class="flex flex-col items-center md:items-start">
                     <a href="/" class="inline-flex items-center mb-4">
-                        <x-application-logo class="h-10 w-auto fill-current text-white" />
-                        <h3 class="text-2xl font-bold mr-2">بكصة</h3>
+                        {{-- ✅ صورة شعارك هنا --}}
+                        <!-- <img src="{{ asset('images/logo.png') }}" alt="بكسة" class="h-12 w-auto mr-2"> -->
+                        <h3 class="text-2xl font-bold mr-2">بكسة</h3>
                     </a>
                     <p class="text-gray-200 mb-4">متجرك الشامل لتوريدات المطاعم بالجملة</p>
-                    <div class="mt-4 flex space-x-4 space-x-reverse">
-                        <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-2 rounded-full transition-all hover:scale-110" aria-label="فيسبوك">
-                            <i class="fab fa-facebook-f w-5 h-5 flex items-center justify-center"></i>
-                        </a>
-                        <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-2 rounded-full transition-all hover:scale-110" aria-label="انستغرام">
-                            <i class="fab fa-instagram w-5 h-5 flex items-center justify-center"></i>
-                        </a>
-                        <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-2 rounded-full transition-all hover:scale-110" aria-label="تويتر">
-                            <i class="fab fa-twitter w-5 h-5 flex items-center justify-center"></i>
-                        </a>
-                        <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-2 rounded-full transition-all hover:scale-110" aria-label="واتساب">
-                            <i class="fab fa-whatsapp w-5 h-5 flex items-center justify-center"></i>
-                        </a>
-                    </div>
+                    <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+    <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-3 rounded-full transition-all hover:scale-110" aria-label="فيسبوك">
+        <i class="fab fa-facebook-f w-5 h-5 flex items-center justify-center"></i>
+    </a>
+    <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-3 rounded-full transition-all hover:scale-110" aria-label="انستغرام">
+        <i class="fab fa-instagram w-5 h-5 flex items-center justify-center"></i>
+    </a>
+    <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-3 rounded-full transition-all hover:scale-110" aria-label="تويتر">
+        <i class="fab fa-twitter w-5 h-5 flex items-center justify-center"></i>
+    </a>
+    <a href="#" class="bg-white text-amber-600 hover:bg-amber-100 p-3 rounded-full transition-all hover:scale-110" aria-label="واتساب">
+        <i class="fab fa-whatsapp w-5 h-5 flex items-center justify-center"></i>
+    </a>
+</div>
+
                 </div>
             </div>
 
@@ -62,25 +64,25 @@
                 <h3 class="text-xl font-bold mb-4 border-b border-amber-500 pb-2 inline-block">خدمة العملاء</h3>
                 <ul class="space-y-3">
                     <li>
-                        <a href="#" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
+                        <a href="{{ route('terms') }}" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
                             <i class="fas fa-file-contract ml-2"></i>
                             <span>الشروط والأحكام</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
+                        <a href="{{ route('returns') }}" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
                             <i class="fas fa-exchange-alt ml-2"></i>
                             <span>سياسة الإرجاع</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
+                        <a href="{{ route('shipping') }}" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
                             <i class="fas fa-truck ml-2"></i>
                             <span>معلومات الشحن</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
+                        <a href="{{ route('faq') }}" class="hover:text-white text-gray-200 transition-all flex items-center justify-center md:justify-start">
                             <i class="fas fa-question-circle ml-2"></i>
                             <span>الأسئلة الشائعة</span>
                         </a>
@@ -128,18 +130,21 @@
             </div>
         </div>
 
-        <div class="border-t border-amber-500 mt-8 pt-6 text-center text-white flex flex-col md:flex-row justify-between items-center">
+        <div class="border-t border-amber-500 mt-12 pt-6 text-center text-white flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© {{ date('Y') }} بكسة. جميع الحقوق محفوظة</p>
-            <div class="mt-4 md:mt-0">
-                <img src="{{ asset('images/payment-methods.png') }}" alt="طرق الدفع" class="h-8">
-            </div>
+           <div class="flex items-center justify-center gap-4 text-2xl text-white mb-20">
+    <i class="fab fa-cc-visa"></i>
+    <i class="fab fa-cc-mastercard"></i>
+   
+</div>
+
         </div>
     </div>
     
     <!-- Back to Top Button -->
     <button 
         id="backToTop" 
-        class="fixed bottom-4 left-4 bg-amber-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-amber-700 focus:outline-none"
+        class="fixed bottom-4 left-10 bg-amber-1300 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-amber-700 focus:outline-none"
         aria-label="العودة للأعلى"
     >
         <i class="fas fa-arrow-up"></i>

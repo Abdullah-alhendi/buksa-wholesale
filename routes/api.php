@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use App\Http\Controllers\ProductController;
 
 // ✅ جلب بيانات منتج واحد
 Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/api/products/{id}', [HomeController::class, 'product']);

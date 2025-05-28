@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="بكصة - منصة متخصصة لتوريدات المطاعم بالجملة">
-    <title>بكصة - توريدات المطاعم بالجملة</title>
+    <meta name="description" content="بكسة - منصة متخصصة لتوريدات المطاعم بالجملة">
+    <title>بكسة - توريدات المطاعم بالجملة</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <!-- Font Awesome -->

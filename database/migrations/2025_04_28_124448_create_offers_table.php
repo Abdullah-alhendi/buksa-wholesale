@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('message');
             $table->boolean('is_active')->default(true);
+            $table->string('image')->nullable();
+
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('filament.admin.pages.index') }}" class="flex items-center gap-2">
+                    <a href="{{ route('filament.admin.pages.dashboard') }}" class="flex items-center gap-2">
                         <x-application-logo class="block h-10 w-auto fill-current text-white" />
                         <span class="text-xl font-bold text-white hidden md:inline">{{ config('app.name', 'بكصة') }}</span>
                     </a>
@@ -13,20 +13,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px sm:me-10 sm:flex">
-                    <x-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('dashboard')" class="text-white hover:text-amber-100">
+                    <x-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-amber-100">
                         <i class="fas fa-chart-line ml-1"></i> {{ __('لوحة التحكم') }}
                     </x-nav-link>
                     
                     <!-- إضافة روابط تنقل أخرى حسب متطلبات التطبيق -->
-                    <x-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('products')" class="text-white hover:text-amber-100">
+                    <x-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('products')" class="text-white hover:text-amber-100">
                         <i class="fas fa-box ml-1"></i> {{ __('المنتجات') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('orders')" class="text-white hover:text-amber-100">
+                    <x-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('orders')" class="text-white hover:text-amber-100">
                         <i class="fas fa-shopping-cart ml-1"></i> {{ __('الطلبات') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('categories')" class="text-white hover:text-amber-100">
+                    <x-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('categories')" class="text-white hover:text-amber-100">
                         <i class="fas fa-tags ml-1"></i> {{ __('التصنيفات') }}
                     </x-nav-link>
                 </div>
@@ -147,19 +147,19 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1 bg-amber-50">
-            <x-responsive-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('dashboard')" class="flex items-center">
+            <x-responsive-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('dashboard')" class="flex items-center">
                 <i class="fas fa-chart-line ml-2"></i> {{ __('لوحة التحكم') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('products')" class="flex items-center">
+            <x-responsive-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('products')" class="flex items-center">
                 <i class="fas fa-box ml-2"></i> {{ __('المنتجات') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('orders')" class="flex items-center">
+            <x-responsive-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('orders')" class="flex items-center">
                 <i class="fas fa-shopping-cart ml-2"></i> {{ __('الطلبات') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('filament.admin.pages.index')" :active="request()->routeIs('categories')" class="flex items-center">
+            <x-responsive-nav-link :href="route('filament.admin.pages.dashboard')" :active="request()->routeIs('categories')" class="flex items-center">
                 <i class="fas fa-tags ml-2"></i> {{ __('التصنيفات') }}
             </x-responsive-nav-link>
         </div>

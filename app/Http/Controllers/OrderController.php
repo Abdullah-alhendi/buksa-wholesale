@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,31 +12,38 @@ use App\Models\Cart;
 
 class OrderController extends Controller
 {
-    public function index()
-    {
-        $orders = Order::with('items')->latest()->paginate(10);
-        return view('admin.orders.index', compact('orders'));
-    }
+public function index()
+{
+// ✅ جلب الطلبات الخاصة فقط بالمستخدم الحالي
+$orders = Order::where('user_id', Auth::id())->with('items')->latest()->paginate(10);
 
-    public function show(Order $order)
-    {
-        $order->load('items.product');
-        return view('admin.orders.show', compact('order'));
-    }
+return view('orders.index', compact('orders'));
+}
 
-    public function updateStatus(Request $request, Order $order)
-    {
-        $request->validate([
-            'status' => 'required|in:pending,paid,shipped,cancelled'
-        ]);
+public function show(Order $order)
+{
+// ✅ منع عرض طلب ليس له
+if ($order->user_id !== Auth::id()) {
+abort(403); // Unauthorized
+}
 
-        $order->update(['status' => $request->status]);
-        return back()->with('success', 'تم تحديث حالة الطلب بنجاح.');
-    }
+$order->load('items.product');
+return view('orders.show', compact('order'));
+}
 
-    public function destroy(Order $order)
-    {
-        $order->delete();
-        return back()->with('success', 'تم حذف الطلب.');
-    }
+public function updateStatus(Request $request, Order $order)
+{
+$request->validate([
+'status' => 'required|in:pending,paid,shipped,cancelled'
+]);
+
+$order->update(['status' => $request->status]);
+return back()->with('success', 'تم تحديث حالة الطلب بنجاح.');
+}
+
+public function destroy(Order $order)
+{
+$order->delete();
+return back()->with('success', 'تم حذف الطلب.');
+}
 }

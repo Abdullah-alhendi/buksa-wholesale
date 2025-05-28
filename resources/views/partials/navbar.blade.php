@@ -1,14 +1,11 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <nav class="bg-gradient-to-r from-emerald-800 to-emerald-700 text-white shadow-xl" dir="rtl" x-data="{ mobileMenuOpen: false }">
     <div class="container mx-auto px-4 py-3">
         <!-- Desktop Navbar -->
         <div class="flex justify-between items-center">
             <!-- Logo -->
             <a href="/" class="text-2xl font-bold flex items-center group">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 mr-2 text-amber-400 group-hover:text-amber-300 transition-all transform group-hover:scale-110 duration-300" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-white group-hover:text-amber-300 transition duration-300">بكسة</span>
+                <img src="{{ asset('images/Buksa4.png') }}" alt="شعار بكسة" class="h-16 w-auto mr-2 rounded-lg shadow group-hover:scale-105 transition-all duration-300">
             </a>
 
             <!-- Desktop Menu -->
@@ -17,24 +14,39 @@
                     <span class="relative z-10">الرئيسية</span>
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
-                <a href="{{ route('products.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('products.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
-                    <span class="relative z-10">المنتجات</span>
-                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
-                <a href="{{ route('categories.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('categories.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
-                    <span class="relative z-10">الفئات</span>
-                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                
                 @auth
-                <a href="{{ route('orders.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('orders.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
-                    <span class="relative z-10">طلباتي</span>
-                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
-                <a href="{{ route('filament.admin.pages.dashboard') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('dashboard') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
-                    <span class="relative z-10">لوحة التحكم</span>
-                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                    @if(Auth::user()->role === 'admin')
+                        {{-- روابط المسؤول --}}
+                        <a href="{{ route('filament.admin.pages.dashboard') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->is('admin*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">لوحة التحكم</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                        <a href="{{ route('shop.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('shop.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">المتجر</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                        <a href="{{ route('products.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('products.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">المنتجات</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                        <a href="{{ route('categories.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('categories.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">الفئات</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                    @else
+                        {{-- روابط المستخدم العادي --}}
+                        <a href="{{ route('shop.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('shop.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">المتجر</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                        <a href="{{ route('orders.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('orders.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
+                            <span class="relative z-10">طلباتي</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+                    @endif
                 @endauth
+
                 <a href="{{ route('contact.index') }}" class="relative overflow-hidden group py-2 px-4 rounded-lg font-medium {{ request()->routeIs('contact.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/40' }} transition-all duration-300">
                     <span class="relative z-10">اتصل بنا</span>
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
@@ -54,11 +66,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         @if($cartItemCount > 0)
-    <span class="absolute -top-1 -right-1 bg-amber-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold transform scale-110 animate-pulse">
-        {{ $cartItemCount }}
-    </span>
-@endif
-
+                            <span class="absolute -top-1 -right-1 bg-amber-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold transform scale-110 animate-pulse">
+                                {{ $cartItemCount }}
+                            </span>
+                        @endif
                     </a>
                     
                     <!-- User Dropdown -->
@@ -125,45 +136,35 @@
              x-transition:leave-end="opacity-0 transform -translate-y-2">
             <div class="pt-2 pb-3 space-y-1 bg-emerald-700 mt-2 rounded-lg shadow-inner px-2">
                 <a href="/" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->is('/') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">الرئيسية</a>
-                <a href="{{ route('products.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('products.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">المنتجات</a>
-                <a href="{{ route('categories.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('categories.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">الفئات</a>
+
                 @auth
-                <a href="{{ route('orders.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('orders.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">طلباتي</a>
-                <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('dashboard') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">لوحة التحكم</a>
+                    @if(Auth::user()->role === 'admin')
+                        <a href="{{ route('filament.admin.pages.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('dashboard') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">لوحة التحكم</a>
+                        <a href="{{ route('products.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('products.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">المنتجات</a>
+                        <a href="{{ route('categories.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('categories.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">الفئات</a>
+                    @else
+                        <a href="{{ route('shop.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('shop.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">المتجر</a>
+                        <a href="{{ route('orders.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('orders.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">طلباتي</a>
+                    @endif
                 @endauth
+
                 <a href="{{ route('contact.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('contact.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">اتصل بنا</a>
                 <a href="{{ route('checkout.index') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('checkout.*') ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-600/70' }} transition duration-300">الدفع</a>
-                
+
                 @auth
                 <div class="border-t border-emerald-600/50 pt-2 mt-2">
-                    <div class="flex items-center px-3 py-2">
-                        <a href="{{ route('cart.index') }}" class="relative mr-4 p-2 hover:bg-emerald-600 rounded-full transition-all duration-300 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            @if($cartItemCount > 0)
-    <span class="mr-2 bg-amber-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-        {{ $cartItemCount }}
-    </span>
-@endif
-
-                            <span class="mr-1 text-white">السلة</span>
-                        </a>
-                    </div>
-                    <a href="{{ route('profile.edit') }}" class="flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                        </svg>
-                        حسابي
+                    <a href="{{ route('cart.index') }}" class="flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300">
+                        🛒 السلة
+                        @if($cartItemCount > 0)
+                            <span class="ml-2 bg-amber-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                                {{ $cartItemCount }}
+                            </span>
+                        @endif
                     </a>
+                    <a href="{{ route('profile.edit') }}" class="flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300">👤 حسابي</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="w-full flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V7.414l-5-5H3zm7 5a1 1 0 10-2 0v4.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L10 12.586V8z" clip-rule="evenodd" />
-                            </svg>
-                            تسجيل خروج
-                        </button>
+                        <button type="submit" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300">🚪 تسجيل خروج</button>
                     </form>
                 </div>
                 @else
@@ -176,3 +177,13 @@
         </div>
     </div>
 </nav>
+
+<style>
+    /* هذا الجزء اختياري، يمكنك إزالته إذا كنت تستخدم الأنماط المضمنة مباشرة */
+    .nav-link {
+        @apply relative overflow-hidden group py-2 px-4 rounded-lg font-medium text-white hover:bg-emerald-600/40 transition-all duration-300;
+    }
+    .mobile-nav-link {
+        @apply block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-600/70 transition duration-300;
+    }
+</style>
